@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-
 import styled from 'styled-components';
 
 import { AppContext } from 'App/AppContext';
@@ -10,18 +9,21 @@ const F = {
     position: absolute;
     bottom: 0;
     right: 0;
-    font-size: 0.75rem;
-    padding-right: ${({ $isMobile }) => ($isMobile ? '1.5rem' : '1rem')};
+    font-size: 1rem; /* Increased font size */
+    padding: ${({ $isMobile }) => ($isMobile ? '1rem 1.5rem' : '1rem 2rem')};
     z-index: 1;
   `,
   Text: styled.p<{ $theme: Theme }>`
     transition: color 0.5s linear;
     color: ${({ $theme }) => $theme.tertiaryTextColor};
+    margin: 0;
   `,
   Link: styled.a<{ $theme: Theme }>`
     transition: color 0.5s linear;
     color: ${({ $theme }) => $theme.secondaryTextColor};
     text-decoration: none;
+    font-weight: 500;
+
     &:hover {
       text-decoration: underline;
     }
@@ -34,32 +36,18 @@ export const Footer = () => {
   return (
     <F.Container $isMobile={isMobile}>
       <F.Text data-v2="footer" $theme={theme}>
-        {'Designed and built by '}
+        {'Designed by '}
         <F.Link
           data-v2="creator"
           aria-label="Manjunath D's personal website (opens in new window)"
-          href="#"
+          href="https://github.com/ManjunathD620"
           rel="noopener noreferrer"
           target="_blank"
           $theme={theme}
         >
-          {'Manjunath D'}
+          {'Varsh'}
         </F.Link>
-        {!isMobile && (
-          <>
-            {' | '}
-            <F.Link
-              data-v2="source"
-              aria-label="Source code for this website (opens in new window)"
-              href="#"
-              rel="noopener noreferrer"
-              target="_blank"
-              $theme={theme}
-            >
-              {'Source'}
-            </F.Link>
-          </>
-        )}
+        
       </F.Text>
     </F.Container>
   );
